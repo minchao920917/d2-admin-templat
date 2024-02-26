@@ -68,6 +68,7 @@
                 a {
                   color: inherit; /* 继承父元素的颜色 */
                 }
+               
                 .dropdown {
                   display: none;
                   position: absolute;
@@ -96,6 +97,9 @@
                           height: 30px;
                           line-height: 30px;
                           color: #909399;
+                          &.is-active {
+                            color: #2f74ff;
+                          }
                         }
                       }
                     }

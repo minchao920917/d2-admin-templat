@@ -2,25 +2,26 @@
  * @Author: minchao
  * @Date: 2024-02-23 19:05:07
  * @LastEditors: Do not edit
- * @LastEditTime: 2024-02-26 21:52:12
+ * @LastEditTime: 2024-02-26 22:12:37
  * @Description: 请填写简介
  */
 /**
  * @description 创建菜单
  * @param {Function} h createElement
  * @param {Object} menu 菜单项
+ * @param {String} activePath 当前菜单项
  */
-export function elMenuItem (h, item) {
-  console.log('item', item)
-
+export function elMenuItem (h, item, activePath) {
+  console.log('item', item, activePath)
   let icon = null
+  const className = item.path === activePath ? 'menu-box-li is-active' : 'menu-box-li'
   if (item.icon) icon = <i class={`fa fa-${item.icon}`} />
   else if (item.iconSvg) icon = <d2-icon-svg name={item.iconSvg} />
   else icon = <i class="fa fa-file-o" />
   return (
     item
       ? <router-link to={item.path}>
-        <li class="menu-box-li" key={item.path} index={item.path}>
+        <li class={className} key={item.path} index={item.path}>
           {icon}
           <span >{item.title}</span>
         </li>
@@ -33,9 +34,10 @@ export function elMenuItem (h, item) {
  * @description 创建子菜单
  * @param {Function} h createElement
  * @param {Object} menu 菜单项
+ * @param {String} activePath 当前路由
  */
-export function elSubmenu (h, menus) {
-  console.log('elSubmenu', menus)
+export function elSubmenu (h, menus, activePath) {
+  console.log('elSubmenu', menus, activePath)
   return menus.map(menu => {
     let icon = null
     if (menu.icon) icon = <i class={`fa fa-${menu.icon}`} />
@@ -61,7 +63,7 @@ export function elSubmenu (h, menus) {
           menu.children
             ? <ul>
               {
-                menu.children.map(child => elMenuItem.call(this, h, child))
+                menu.children.map(child => elMenuItem.call(this, h, child, activePath))
               }
             </ul>
             : null
@@ -69,9 +71,9 @@ export function elSubmenu (h, menus) {
       </div>)
   })
 }
-
-export function headerMenuItem (h, menu) {
+export function headerMenuItem (h, menu, activePath) {
   console.log('headerMenuItem', menu)
+  console.log('headerMenuItem', activePath)
   let icon = null
   if (menu.icon) icon = <i class={`fa fa-${menu.icon}`} />
   else if (menu.iconSvg) icon = <d2-icon-svg name={menu.iconSvg} />
@@ -94,7 +96,7 @@ export function headerMenuItem (h, menu) {
         <div class="dropdown">
           <div class="menu-wrap">
             {
-              elSubmenu.call(this, h, menu.children)
+              elSubmenu.call(this, h, menu.children, activePath)
             }
           </div>
         </div>
@@ -107,8 +109,9 @@ export function headerMenuItem (h, menu) {
  * @description 在组件中调用此方法渲染菜单项目
  * @param {Function} h createElement
  * @param {Object} menu 菜单项
+ * @param {String} activePath 选中的菜单项
  */
-export function createMenu (h, menu) {
+export function createMenu (h, menu, activePath) {
   // if (menu.children === undefined) return elMenuItem.call(this, h, menu)
-  return headerMenuItem.call(this, h, menu)
+  return headerMenuItem.call(this, h, menu, activePath)
 }

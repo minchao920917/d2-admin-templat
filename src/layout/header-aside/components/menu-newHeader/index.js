@@ -11,6 +11,7 @@ export default {
   ],
   render (h) {
     console.log('this.header', JSON.stringify(this.header))
+    console.log('this.active', this.active)
     return <div
       flex="cross:center"
       class={ { 'd2-theme-header-menu': true, 'is-scrollable': this.isScroll } }
@@ -26,7 +27,7 @@ export default {
           style={ { transform: `translateX(${this.currentTranslateX}px)` } }
           ref="scroll">
           <ul class="menu">
-            { this.header.map(menu => createMenu.call(this, h, menu)) }
+            { this.header.map(menu => createMenu.call(this, h, menu, this.active)) }
           </ul>
           {/* <el-menu
             mode="horizontal"
