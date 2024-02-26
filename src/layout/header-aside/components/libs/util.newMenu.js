@@ -1,8 +1,8 @@
 /*
  * @Author: minchao
  * @Date: 2024-02-23 19:05:07
- * @LastEditors: minchao
- * @LastEditTime: 2024-02-26 16:53:01
+ * @LastEditors: Do not edit
+ * @LastEditTime: 2024-02-26 21:52:12
  * @Description: 请填写简介
  */
 /**
@@ -15,14 +15,16 @@ export function elMenuItem (h, item) {
 
   let icon = null
   if (item.icon) icon = <i class={`fa fa-${item.icon}`} />
-  if (item.iconSvg) icon = <d2-icon-svg name={item.iconSvg} />
-  // else icon = <i class="fa fa-file-o" />
+  else if (item.iconSvg) icon = <d2-icon-svg name={item.iconSvg} />
+  else icon = <i class="fa fa-file-o" />
   return (
     item
-      ? <li class="menu-li" key={item.path} index={item.path}>
-        {icon}
-        <span >{item.title}</span>
-      </li>
+      ? <router-link to={item.path}>
+        <li class="menu-box-li" key={item.path} index={item.path}>
+          {icon}
+          <span >{item.title}</span>
+        </li>
+      </router-link>
       : null
   )
 }
@@ -41,10 +43,20 @@ export function elSubmenu (h, menus) {
     console.log('menu', menu.title)
     return (
       <div class="menu-box">
-        <span>
-          {icon}
-          {menu.title}
-        </span>
+        {
+          menu.children
+            ? <span class="title-span">
+              {icon}
+              {menu.title}
+            </span>
+            : <router-link to={menu.path}>
+              <span class="title-span">
+                {icon}
+                {menu.title}
+              </span>
+            </router-link>
+        }
+
         {
           menu.children
             ? <ul>
@@ -54,7 +66,6 @@ export function elSubmenu (h, menus) {
             </ul>
             : null
         }
-
       </div>)
   })
 }
@@ -68,10 +79,12 @@ export function headerMenuItem (h, menu) {
 
   if (menu.children === undefined) {
     return (
-      <li class="menu-li" key={menu.path} index={menu.path}>
-        {icon}
-        <span class="title">{menu.title}</span>
-      </li>
+      <router-link to={menu.path}>
+        <li class="menu-li" key={menu.path} index={menu.path}>
+          {icon}
+          <span class="title">{menu.title}</span>
+        </li>
+      </router-link>
     )
   } else {
     return (

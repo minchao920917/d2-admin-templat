@@ -1,7 +1,7 @@
 import { throttle } from 'lodash'
 import { mapState } from 'vuex'
 import menuMixin from '../mixin/menu'
-import { createMenu as createMenuOld } from '../libs/util.menu'
+// import { createMenu as createMenuOld } from '../libs/util.menu'
 import { createMenu } from '../libs/util.newMenu'
 
 export default {
@@ -28,12 +28,12 @@ export default {
           <ul class="menu">
             { this.header.map(menu => createMenu.call(this, h, menu)) }
           </ul>
-          <el-menu
+          {/* <el-menu
             mode="horizontal"
             defaultActive={ this.active }
             onSelect={ this.handleMenuSelect }>
             { this.header.map(menu => createMenuOld.call(this, h, menu)) }
-          </el-menu>
+          </el-menu> */}
         </div>
       </div>
       {
