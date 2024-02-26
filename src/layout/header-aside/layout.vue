@@ -17,7 +17,8 @@
         <div class="toggle-aside-btn" @click="handleToggleAside" flex-box="0">
           <d2-icon name="bars"/>
         </div>
-        <d2-menu-header flex-box="1"/>
+        <!-- <d2-menu-header flex-box="1"/> -->
+        <d2-menu-new-header flex-box="1"/>
         <!-- 顶栏右侧 -->
         <div class="d2-header-right" flex-box="0">
           <!-- 如果你只想在开发环境显示这个按钮请添加 v-if="$env === 'development'" -->
@@ -78,6 +79,7 @@
 <script>
 import d2MenuSide from './components/menu-side'
 import d2MenuHeader from './components/menu-header'
+import d2MenuNewHeader from './components/menu-newHeader'
 import d2Tabs from './components/tabs'
 import d2HeaderFullscreen from './components/header-fullscreen'
 import d2HeaderLocales from './components/header-locales'
@@ -96,7 +98,8 @@ export default {
   ],
   components: {
     d2MenuSide,
-    d2MenuHeader,
+    // d2MenuHeader,
+    d2MenuNewHeader,
     d2Tabs,
     d2HeaderFullscreen,
     d2HeaderLocales,

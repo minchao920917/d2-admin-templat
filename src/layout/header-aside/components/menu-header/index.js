@@ -9,6 +9,7 @@ export default {
     menuMixin
   ],
   render (h) {
+    console.log('this.header', this.header)
     return <div
       flex="cross:center"
       class={ { 'd2-theme-header-menu': true, 'is-scrollable': this.isScroll } }

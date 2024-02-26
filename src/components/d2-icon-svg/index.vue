@@ -1,5 +1,5 @@
 <template>
-  <svg aria-hidden="true">
+  <svg aria-hidden="true" :fill="color">
     <use :xlink:href="icon"></use>
   </svg>
 </template>
@@ -10,6 +10,11 @@ export default {
   props: {
     name: {
       type: String,
+      required: true
+    },
+    color: {
+      type: String,
+      default: '#000',
       required: true
     }
   },

@@ -3,7 +3,7 @@
     <template slot="header">SVG图标组件</template>
     <el-row>
       <el-col class="icon-card" :span="4" v-for="(icon, index) in $IconSvg" :key="index">
-        <d2-icon-svg class="icon" :name="icon"/>
+        <d2-icon-svg class="icon" :name="icon" :currentColor="'#f60'"/>
         <div class="icon-title">
           <span>{{icon}}</span>
         </div>
@@ -22,6 +22,7 @@
   &:hover {
     .icon {
       transform: scale(1.1);
+      color:#f60;
     }
     .icon-title {
       color: $color-text-main;

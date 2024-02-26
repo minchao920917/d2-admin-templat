@@ -1,202 +1,158 @@
 <template>
   <d2-container type="ghost">
-    <McOrgTree id="first-tree" :label-class-name="labelClassName" :data="data" @on-node-mouseover="onMouseover1"
-      @on-node-mouseout="onMouseout" />
-
-    <!-- 创建浮窗盒子 -->
-    <div v-show="BasicSwich" class="floating">
-      <p>ID:{{ BasicInfo.id }}</p>
-      <p>Name:{{ BasicInfo.label }}</p>
-    </div>
+    <p>通过关键字过滤树节点</p>
+    <div class="component-wrapper">
+      <div class="filter-wrapper">
+        <input type="text" v-model="filterText" placeholder="输入关键字进行过滤" />
+      </div>
+      <!-- <vue-okr-tree ref="tree" :data="testData" :left-data="testLeftData" only-both-tree direction="horizontal"
+        show-collapsable node-key="id" default-expand-all :label-class-name="renderLabelClass"
+        current-lable-class-name="label-bg-blue" :filter-node-method="filterNode" showNodeNum  :render-content="renderContent"></vue-okr-tree>
+     -->
+      </div>
 
   </d2-container>
 </template>
 
 <script>
-import McOrgTree from "./components/mc-org-tree/index.vue";
+// import VueOkrTree from '../index/components/vue-okr-tree/OkrTree.vue'
 export default {
   components: {
-    McOrgTree,
+    // VueOkrTree
   },
-  data() {
+  data () {
     return {
-      labelClassName: "bg-color-orange",
-      BasicSwich: false,
-      BasicInfo: { id: null, label: null },
-      // 定义数据
-      data: {
-        id: 0,
-        label: "XXX科技有限公司",
-        children: [
-          {
-            id: 2,
-            label: "产品研发部",
-            children: [
-              {
-                id: 5,
-                label: "研发-前端"
-              },
-              {
-                id: 6,
-                label: "研发-后端"
-              },
-              {
-                id: 9,
-                label: "UI设计"
-              },
-              {
-                id: 10,
-                label: "产品经理"
-              }
-            ]
-          },
-          {
-            id: 3,
-            label: "销售部",
-            children: [
-              {
-                id: 7,
-                label: "销售一部"
-              },
-              {
-                id: 8,
-                label: "销售二部"
-              }
-            ]
-          },
-          {
-            id: 4,
-            label: "财务部"
-          },
-          {
-            id: 9,
-            label: "HR人事"
+      filterText: '',
+      testData: [
+        {
+          id: 1,
+          label: 'xxx科技有有限公司',
+          content: '这是一个有活力的公司'
+        }
+      ],
+      testLeftData: [{
+        id: 1,
+        label: 'xxx科技有有限公司',
+        content: '这是一个有活力的公司',
+        children: [{
+          id: 12,
+          label: '产品研发部',
+          content: '这是一个有活力的产品研发部',
+          children: [{
+            id: 13,
+            label: '研发-前端',
+            content: '这是一个有活力的研发-前端'
+          }, {
+            id: 14,
+            label: '研发-后端',
+            content: '这是一个有活力的研发-后端'
+          }, {
+            id: 15,
+            label: 'UI 设计',
+            content: '这是一个有活力的UI 设计'
+          }]
+        }, {
+          id: 16,
+          label: '销售部',
+          children: [{
+            id: 17,
+            label: '销售一部',
+            content: '这是一个有活力的销售一部'
+          }, {
+            id: 18,
+            label: '销售二部',
+            content: '这是一个有活力的销售二部'
           }
-        ]
-      }
-
-
+          ]
+        }, {
+          id: 19,
+          label: '财务部',
+          content: '这是一个有活力的财务部'
+        }]
+      }]
+    }
+  },
+  watch: {
+    filterText (val) {
+      this.$refs.tree.filter(val)
     }
   },
   methods: {
-    traverseUpwards(element) {
-      // 检查是否遇到 id 是 'a' 的元素，如果是，则暂停遍历
-      if (element.id === 'first-tree') {
-        return;
-      }
-      // 添加 ff className
-      element.classList.add('father');
-
-      // 获取父元素
-      const parent = element.parentNode;
-
-      // 如果存在父元素，则继续向上遍历
-      if (parent) {
-        this.traverseUpwards(parent); // 递归调用遍历父元素
-      }
+    filterNode (value, data) {
+      if (!value) return true
+      return data.label.indexOf(value) !== -1
     },
-    removeUpwards(element) {
-      // 检查是否遇到 id 是 'a' 的元素，如果是，则暂停遍历
-      if (element.id === 'first-tree') {
-        return;
+    renderLabelClass (node) {
+      return 'label-class-blue'
+    },
+    renderNodeBtnContent (h, node) {
+      return (
+        <div class="org-chart-node-btn-text">{'>'}</div>
+      )
+    },
+    renderContent (h, node) {
+      const cls = ['diy-wrapper']
+      if (node.isCurrent) {
+        cls.push('current-select')
       }
-      // 添加 ff className
-      element.classList.remove('father');
-
-      // 获取父元素
-      const parent = element.parentNode;
-
-      // 如果存在父元素，则继续向上遍历
-      if (parent) {
-        this.removeUpwards(parent); // 递归调用遍历父元素
+      if (node.isLeftChild) {
+        cls.push('left-child')
       }
-    },
-    // 方法
-    onMouseout(e, data) {
-      // this.removeUpwards(e.target)
-      const classNames = e.currentTarget.className.split(" ")
-      e.currentTarget.className = classNames.filter(item => item !== 'active-bg').join(' ')
-      this.BasicSwich = false
-    },
-    onMouseover1(e, data) {
-      console.log(e.target)
-      this.traverseUpwards(e.target)
-      const classNames = e.currentTarget.className.split(" ")
-      console.log('classNames', classNames)
-      e.currentTarget.className = [...classNames, 'active-bg'].join(' ')
-      this.BasicInfo = { ...data, id: data.id };
-      this.BasicSwich = true;
-      var floating = document.getElementsByClassName('floating')[0];
-      floating.style.left = e.clientX + 'px';
-      floating.style.top = e.clientY + 'px';
-
-    },
-
-  },
+      return (
+        <div class={cls}>
+          <div class="diy-con-name">{node.data.label}</div>
+          <div class="diy-con-content">{node.data.content}</div>
+        </div>
+      )
+    }
+  }
 }
 </script>
 <style>
-/* 盒子css */
-.floating {
-  background: rgba(0, 0, 0, 0.7);
-  width: 160px;
-  height: 100px;
-  position: fixed;
-  color: #fff;
-  padding-top: 15px;
-  border-radius: 15px;
-  padding-left: 15px;
-  box-sizing: border-box;
-  left: 0;
-  top: 0;
-  transition: all 0.3s;
-  z-index: 999;
-  text-align: left;
-  font-size: 12px;
+.label-class-blue {
+  color: #1989fa;
 }
 
-#first-tree {
-
-
-
-
-  .bg-color-orange1 {
-    color: #fff;
-    background-color: red;
-  }
-
-  .bg-color-orange2 {
-    color: #fff;
-    background-color: blue;
-  }
-
-  .bg-color-orange3 {
-    color: #fff;
-    background-color: orange;
-  }
-
-  .active-bg {
-    background: rgba(76, 121, 180, .6);
-    color: rgb(23, 7, 240);
-  }
-
-  .org-tree-node.father {
-    &::after {
-      border-top-color: rgb(222, 12, 110);
-      border-left-color: rgb(222, 12, 110);
-    }
-  }
-
-  .org-tree-node-children.father {
-    &::before {
-      border-top-color: rgb(222, 12, 110);
-      border-left-color: rgb(222, 12, 110);
-    }
-  }
-
-
-
-
-
+.label-bg-blue {
+  background-color: aqua;
+  color: red;
+}
+.label-class-blue{
+  color: #1989fa;
+}
+.label-bg-blue{
+  background: #1989fa;
+  color: #fff;
+}
+.diy-wrapper{
+  padding:10px
+}
+.no-padding{
+  padding: 0 !important;
+}
+.diy-wrapper.left-child{
+  border: 1px solid red;
+}
+.diy-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.diy-wrapper .diy-con-name {
+  font-size: 12px;
+  line-height: 18px;
+  color: #646a73;
+}
+.diy-wrapper .diy-con-content {
+  color: #1f2329;
+  line-height: 22px;
+  word-break: break-word;
+  font-size: 14px;
+}
+.diy-wrapper.current-select .diy-con-name {
+  color: red;
+}
+.diy-wrapper.current-select .diy-con-content {
+  color: #1989fa;
 }
 </style>
