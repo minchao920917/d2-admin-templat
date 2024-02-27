@@ -1,10 +1,25 @@
 /*
  * @Author: minchao
  * @Date: 2024-02-23 19:05:07
- * @LastEditors: Do not edit
- * @LastEditTime: 2024-02-26 22:12:37
+ * @LastEditors: minchao
+ * @LastEditTime: 2024-02-27 09:08:38
  * @Description: 请填写简介
  */
+
+function hasUrlInChildren(obj, url) {
+  // 先检查当前对象的 path 是否等于给定的 url
+  if (obj.path === url) {
+    return true
+  }
+
+  // 然后递归检查当前对象的 children 数组中的每个子对象
+  if (obj.children && obj.children.length > 0) {
+    return obj.children.some(child => hasUrlInChildren(child, url))
+  }
+
+  // 如果当前对象没有 children 或者 children 数组为空，则返回 false
+  return false
+}
 /**
  * @description 创建菜单
  * @param {Function} h createElement
@@ -12,7 +27,6 @@
  * @param {String} activePath 当前菜单项
  */
 export function elMenuItem (h, item, activePath) {
-  console.log('item', item, activePath)
   let icon = null
   const className = item.path === activePath ? 'menu-box-li is-active' : 'menu-box-li'
   if (item.icon) icon = <i class={`fa fa-${item.icon}`} />
@@ -37,22 +51,27 @@ export function elMenuItem (h, item, activePath) {
  * @param {String} activePath 当前路由
  */
 export function elSubmenu (h, menus, activePath) {
-  console.log('elSubmenu', menus, activePath)
   return menus.map(menu => {
     let icon = null
     if (menu.icon) icon = <i class={`fa fa-${menu.icon}`} />
     if (menu.iconSvg) icon = <d2-icon-svg name={menu.iconSvg} />
-    console.log('menu', menu.title)
+    let className = 'title-span'
+    if (menu.path === activePath) {
+      className = 'title-span is-active'
+    }
+    if (menu.children && menu.children.some(item => item.path === activePath)) {
+      className = 'title-span is-active'
+    }
     return (
       <div class="menu-box">
         {
           menu.children
-            ? <span class="title-span">
+            ? <span class={className}>
               {icon}
               {menu.title}
             </span>
             : <router-link to={menu.path}>
-              <span class="title-span">
+              <span class={className}>
                 {icon}
                 {menu.title}
               </span>
@@ -74,6 +93,8 @@ export function elSubmenu (h, menus, activePath) {
 export function headerMenuItem (h, menu, activePath) {
   console.log('headerMenuItem', menu)
   console.log('headerMenuItem', activePath)
+
+  const className = hasUrlInChildren(menu, activePath) ? 'menu-li is-active' : 'menu-li'
   let icon = null
   if (menu.icon) icon = <i class={`fa fa-${menu.icon}`} />
   else if (menu.iconSvg) icon = <d2-icon-svg name={menu.iconSvg} />
@@ -82,7 +103,7 @@ export function headerMenuItem (h, menu, activePath) {
   if (menu.children === undefined) {
     return (
       <router-link to={menu.path}>
-        <li class="menu-li" key={menu.path} index={menu.path}>
+        <li class={className} key={menu.path} index={menu.path}>
           {icon}
           <span class="title">{menu.title}</span>
         </li>
@@ -90,7 +111,7 @@ export function headerMenuItem (h, menu, activePath) {
     )
   } else {
     return (
-      <li class="menu-li" key={menu.path} index={menu.path}>
+      <li class={className} key={menu.path} index={menu.path}>
         {icon}
         <span class="title">{menu.title}</span>
         <div class="dropdown">
