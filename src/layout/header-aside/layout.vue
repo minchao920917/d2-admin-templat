@@ -27,7 +27,7 @@
           <d2-icon name="bars" />
         </div>
         <d2-menu-new-header flex-box="1" />
-        <d2-menu-header flex-box="1" />
+        <!-- <d2-menu-header flex-box="1" /> -->
         <!-- 顶栏右侧 -->
         <div class="d2-header-right"
              flex-box="0">

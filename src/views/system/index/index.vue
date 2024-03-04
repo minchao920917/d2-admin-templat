@@ -1,110 +1,30 @@
 <template>
   <d2-container type="ghost">
-    <p>通过关键字过滤树节点</p>
     <div class="component-wrapper">
-      <div class="filter-wrapper">
-        <input type="text" v-model="filterText" placeholder="输入关键字进行过滤" />
-      </div>
-      <!-- <vue-okr-tree ref="tree" :data="testData" :left-data="testLeftData" only-both-tree direction="horizontal"
-        show-collapsable node-key="id" default-expand-all :label-class-name="renderLabelClass"
-        current-lable-class-name="label-bg-blue" :filter-node-method="filterNode" showNodeNum  :render-content="renderContent"></vue-okr-tree>
-     -->
-      </div>
-
+      <zh-map />
+    </div>
+    <div class="component-wrapper">
+       <mc-map />
+    </div>
   </d2-container>
 </template>
 
 <script>
-// import VueOkrTree from '../index/components/vue-okr-tree/OkrTree.vue'
+import zhMap from './components/zhMap/index.vue'
+import mcMap from './components/mcMap/index.vue'
 export default {
   components: {
-    // VueOkrTree
+    zhMap,
+    mcMap
   },
   data () {
     return {
-      filterText: '',
-      testData: [
-        {
-          id: 1,
-          label: 'xxx科技有有限公司',
-          content: '这是一个有活力的公司'
-        }
-      ],
-      testLeftData: [{
-        id: 1,
-        label: 'xxx科技有有限公司',
-        content: '这是一个有活力的公司',
-        children: [{
-          id: 12,
-          label: '产品研发部',
-          content: '这是一个有活力的产品研发部',
-          children: [{
-            id: 13,
-            label: '研发-前端',
-            content: '这是一个有活力的研发-前端'
-          }, {
-            id: 14,
-            label: '研发-后端',
-            content: '这是一个有活力的研发-后端'
-          }, {
-            id: 15,
-            label: 'UI 设计',
-            content: '这是一个有活力的UI 设计'
-          }]
-        }, {
-          id: 16,
-          label: '销售部',
-          children: [{
-            id: 17,
-            label: '销售一部',
-            content: '这是一个有活力的销售一部'
-          }, {
-            id: 18,
-            label: '销售二部',
-            content: '这是一个有活力的销售二部'
-          }
-          ]
-        }, {
-          id: 19,
-          label: '财务部',
-          content: '这是一个有活力的财务部'
-        }]
-      }]
+
     }
   },
   watch: {
-    filterText (val) {
-      this.$refs.tree.filter(val)
-    }
   },
   methods: {
-    filterNode (value, data) {
-      if (!value) return true
-      return data.label.indexOf(value) !== -1
-    },
-    renderLabelClass (node) {
-      return 'label-class-blue'
-    },
-    renderNodeBtnContent (h, node) {
-      return (
-        <div class="org-chart-node-btn-text">{'>'}</div>
-      )
-    },
-    renderContent (h, node) {
-      const cls = ['diy-wrapper']
-      if (node.isCurrent) {
-        cls.push('current-select')
-      }
-      if (node.isLeftChild) {
-        cls.push('left-child')
-      }
-      return (
-        <div class={cls}>
-          <div class="diy-con-name">{node.data.label}</div>
-          <div class="diy-con-content">{node.data.content}</div>
-        </div>
-      )
-    }
   }
 }
 </script>
