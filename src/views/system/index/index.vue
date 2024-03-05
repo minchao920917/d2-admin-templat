@@ -6,16 +6,41 @@
     <div class="component-wrapper">
        <mc-map />
     </div>
+    <div class="component-wrapper">
+       <branch />
+    </div>
+    <div class="component-wrapper">
+       <china-map />
+    </div>
+    <div class="component-wrapper">
+       <rank />
+    </div>
+    <div class="component-wrapper">
+       <order />
+    </div>
+    <div class="component-wrapper">
+       <target />
+    </div>
   </d2-container>
 </template>
 
 <script>
 import zhMap from './components/zhMap/index.vue'
-import mcMap from './components/mcMap/index.vue'
+import mcMap from './components/mcMap'
+import branch from './components/branch'
+import chinaMap from './components/chinaMap'
+import rank from './components/rank'
+import order from './components/order'
+import target from './components/target'
 export default {
   components: {
     zhMap,
-    mcMap
+    mcMap,
+    branch,
+    chinaMap,
+    rank,
+    order,
+    target
   },
   data () {
     return {

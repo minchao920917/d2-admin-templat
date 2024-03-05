@@ -1,13 +1,11 @@
 <template>
   <div class="mc-chart">
-    <p>111111</p>
       <mc-chart ref="chart" :init-options="initOptions" :option="option" style="height: 283px" theme="mc-echarts-theme" />
   </div>
 </template>
 
 <script>
-import china from 'echarts/map/json/china.json'
-import McChart from '@/components/mcCharts/index.vue'
+import McChart from '@/components/mcCharts'
 
 export default {
   components: {
@@ -15,81 +13,84 @@ export default {
   },
   data () {
     return {
-      skeleton: true,
       initOptions: {
         renderer: 'svg'
       },
-      option: {}
-    }
-  },
-  methods: {
-    getMap () {
-      McChart.registerMap('china', china)
-      this.option = {
-        title: {
-          text: '2099年全国GDP分布',
-          subtext: '数据来自vue-admin-beautiful杜撰'
-        },
+      option: {
         tooltip: {
-          trigger: 'item'
+          trigger: 'axis',
+          extraCssText: 'z-index:1'
         },
-        dataRange: {
-          min: 0,
-          max: 55000,
-          text: ['高', '低'],
-          splitNumber: 0
+        grid: {
+          top: '4%',
+          left: '2%',
+          right: '2%',
+          bottom: '0%',
+          containLabel: true
         },
+        xAxis: [
+          {
+            type: 'category',
+            data: [
+              '1月',
+              '2月',
+              '3月',
+              '4月',
+              '5月',
+              '6月',
+              '7月',
+              '8月',
+              '9月',
+              '10月',
+              '11月',
+              '12月'
+            ],
+            boundaryGap: false
+          }
+        ],
+        yAxis: [
+          {
+            type: 'value'
+          }
+        ],
         series: [
           {
-            name: '2099年全国GDP分布',
-            type: 'map',
-            map: 'china',
-            emphasis: {
-              label: {
-                show: true
-              }
-            },
+            name: '签单',
+            type: 'line',
             data: [
-              { name: '西藏', value: 605.83 },
-              { name: '青海', value: 1670.44 },
-              { name: '宁夏', value: 2102.21 },
-              { name: '海南', value: 2522.66 },
-              { name: '甘肃', value: 5020.37 },
-              { name: '贵州', value: 5701.84 },
-              { name: '新疆', value: 6610.05 },
-              { name: '云南', value: 8893.12 },
-              { name: '重庆', value: 10011.37 },
-              { name: '吉林', value: 10568.83 },
-              { name: '山西', value: 11237.55 },
-              { name: '天津', value: 11307.28 },
-              { name: '江西', value: 11702.82 },
-              { name: '广西', value: 11720.87 },
-              { name: '陕西', value: 12512.3 },
-              { name: '黑龙江', value: 12582 },
-              { name: '内蒙古', value: 14359.88 },
-              { name: '安徽', value: 15300.65 },
-              { name: '北京', value: 16251.93 },
-              { name: '福建', value: 17560.18 },
-              { name: '上海', value: 19195.69 },
-              { name: '湖北', value: 19632.26 },
-              { name: '湖南', value: 19669.56 },
-              { name: '四川', value: 21026.68 },
-              { name: '辽宁', value: 22226.7 },
-              { name: '河北', value: 24515.76 },
-              { name: '河南', value: 26931.03 },
-              { name: '浙江', value: 32318.85 },
-              { name: '山东', value: 45361.85 },
-              { name: '江苏', value: 49110.27 },
-              { name: '广东', value: 53210.28 }
-            ]
+              1295, 3020, 1330, 512, 4463, 2214, 3330, 2412, 1205, 820, 3330,
+              912
+            ],
+            symbol: 'circle',
+            smooth: true,
+            yAxisIndex: 0,
+            showSymbol: false,
+            areaStyle: {
+              opacity: 0.8
+            }
+          },
+          {
+            name: '回款',
+            type: 'line',
+            data: [
+              2905, 2020, 1730, 128, 963, 4614, 630, 1912, 1005, 1782, 1530,
+              912
+            ],
+            symbol: 'circle',
+            smooth: true,
+            yAxisIndex: 0,
+            showSymbol: false,
+            areaStyle: {
+              opacity: 0.8
+            }
           }
         ]
       }
-      this.skeleton = false
     }
   },
+  methods: {
+  },
   mounted () {
-    this.getMap()
   }
 }
 </script>
