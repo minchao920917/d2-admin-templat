@@ -1,6 +1,36 @@
 <template>
-  <d2-container type="ghost">
-    <div class="component-wrapper">
+  <d2-container type="ghost" style="overflow:hidden;">
+    <el-row type="flex" justify="space-between" :gutter="5">
+      <el-col :span="16">
+         <div style="height:300px">
+          <div class="el-card p10" style="height:100%">
+           <listAtt />
+          </div>
+         </div>
+        <!-- <div style="height:200px">
+          <div class="el-card p10" style="height:100%">
+            <p>任务处理</p>
+          </div>
+        </div>
+        <div class="el-card p10 mt5">
+
+            <china-map />
+
+        </div> -->
+      </el-col>
+      <el-col :span="8">
+        <div style="height:300px">
+          <div class="el-card p10" style="height:100%">
+             <listIcons />
+          </div>
+        </div>
+        <!-- <div class="el-card p10 mt5">
+            <branch />
+        </div> -->
+
+      </el-col>
+    </el-row>
+    <!-- <div class="component-wrapper">
       <zh-map />
     </div>
     <div class="component-wrapper">
@@ -20,27 +50,31 @@
     </div>
     <div class="component-wrapper">
        <target />
-    </div>
+    </div> -->
   </d2-container>
 </template>
 
 <script>
-import zhMap from './components/zhMap/index.vue'
-import mcMap from './components/mcMap'
-import branch from './components/branch'
-import chinaMap from './components/chinaMap'
-import rank from './components/rank'
-import order from './components/order'
-import target from './components/target'
+// import zhMap from './components/zhMap/index.vue'
+// import mcMap from './components/mcMap'
+// import branch from './components/branch'
+// import chinaMap from './components/chinaMap'
+import listAtt from './components/listAtt'
+import listIcons from './components/listIcons'
+// import rank from './components/rank'
+// import order from './components/order'
+// import target from './components/target'
 export default {
   components: {
-    zhMap,
-    mcMap,
-    branch,
-    chinaMap,
-    rank,
-    order,
-    target
+    // zhMap,
+    // mcMap,
+    // branch,
+    // chinaMap,
+    listAtt,
+    listIcons
+    // rank,
+    // order,
+    // target
   },
   data () {
     return {
@@ -99,5 +133,11 @@ export default {
 }
 .diy-wrapper.current-select .diy-con-content {
   color: #1989fa;
+}
+.mt5{
+  margin-top: 10px;
+}
+.p10{
+  padding: 10px;
 }
 </style>

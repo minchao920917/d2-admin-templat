@@ -1,9 +1,17 @@
+<!--
+ * @Author: minchao
+ * @Date: 2023-11-20 08:35:07
+ * @LastEditors: minchao
+ * @LastEditTime: 2024-03-07 09:21:49
+ * @Description: 请填写简介
+-->
 <template>
   <d2-container>
     <template slot="header">SVG图标组件</template>
     <el-row>
       <el-col class="icon-card" :span="4" v-for="(icon, index) in $IconSvg" :key="index">
         <d2-icon-svg class="icon" :name="icon" :currentColor="'#f60'"/>
+        {{icon}}
         <div class="icon-title">
           <span>{{icon}}</span>
         </div>
