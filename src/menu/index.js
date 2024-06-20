@@ -6,6 +6,7 @@ import demoPlugins from './modules/demo-plugins'
 import demoComponents from './modules/demo-components'
 // 功能
 import demoPlayground from './modules/demo-playground'
+import test from './modules/demo-test'
 
 /**
  * @description 给菜单数据补充上 path 字段
@@ -38,5 +39,9 @@ export const menuHeader = supplementPath([
   },
   demoPlayground,
   demoComponents,
-  demoPlugins
+  demoPlugins,
+  test,
+  demoComponents,
+  demoPlayground,
+  demoComponents
 ])

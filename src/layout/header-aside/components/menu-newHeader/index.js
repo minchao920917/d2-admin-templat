@@ -19,11 +19,9 @@ export default {
       <div
         ref="content"
         class="d2-theme-header-menu__content"
-        flex-box="1"
         flex>
         <div
           class="d2-theme-header-menu__scroll"
-          flex-box="0"
           style={ { transform: `translateX(${this.currentTranslateX}px)` } }
           ref="scroll">
           <ul class="menu">

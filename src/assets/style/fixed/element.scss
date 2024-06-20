@@ -1,3 +1,5 @@
+@import "../mixin.scss";
+@import "../variable"; // 引入变量
 // element 样式补丁
 .el-card {
   &.is-always-shadow {
@@ -29,3 +31,13 @@
 .el-table colgroup.gutter {
   display: table-cell !important;
 }
+
+.el-table {
+    @include add-size($font_size_22);
+  }
+  .el-submenu__title {
+    @include add-size($font_size_22);
+  }
+  .el-input {
+    @include add-size($font_size_22);
+  }

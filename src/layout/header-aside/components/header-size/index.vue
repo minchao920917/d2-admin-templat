@@ -45,6 +45,20 @@ export default {
         message: '已更新页面内 <b>组件</b> 的 <b>默认尺寸</b><br/>例如按钮大小，<b>非字号</b>',
         type: 'success'
       })
+      let size = 1
+      if (value === 'default') {
+        size = 2
+      }
+      if (value === 'medium') {
+        size = 3
+      }
+      if (value === 'small') {
+        size = 4
+      }
+      if (value === 'mini') {
+        size = 5
+      }
+      window.document.documentElement.setAttribute('data-size', size)
     },
     iconName (name) {
       return name === this.value ? 'dot-circle-o' : 'circle-o'

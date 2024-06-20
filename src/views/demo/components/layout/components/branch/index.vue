@@ -1,3 +1,17 @@
+<!--
+ * @Author: minchao
+ * @Date: 2024-05-23 21:34:26
+ * @LastEditors: minchao
+ * @LastEditTime: 2024-05-24 10:39:11
+ * @Description: 请填写简介
+-->
+<!--
+ * @Author: minchao
+ * @Date: 2024-05-23 21:34:26
+ * @LastEditors: minchao
+ * @LastEditTime: 2024-05-24 10:38:55
+ * @Description: 请填写简介
+-->
 <template>
   <div class="mc-chart">
       <mc-chart ref="chart" :init-options="initOptions" :option="option" style="height: 283px" theme="mc-echarts-theme" />
@@ -36,11 +50,10 @@ export default {
               }
             },
             data: [
-              { value: 1048, name: '搜索引擎' },
-              { value: 735, name: '直接访问' },
-              { value: 580, name: '邮件营销' },
-              { value: 484, name: '联盟广告' },
-              { value: 300, name: '视频广告' }
+              { value: 1048, name: '待机' },
+              { value: 735, name: '运行中' },
+              { value: 580, name: '警告' },
+              { value: 484, name: '离线' }
             ]
           }
         ]

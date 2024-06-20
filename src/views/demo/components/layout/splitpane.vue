@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import html2canvas from './html2canvas/dist/html2canvas'
+
 import VueOkrTree from './vue-okr-tree/OkrTree.vue'
 import Vue from 'vue'
 import SplitPane from 'vue-splitpane'
@@ -90,15 +90,7 @@ export default {
   },
   methods: {
     downloadPng(){
-      html2canvas( document.getElementById('canvas'), {
-          useCORS: true, // 使用跨域
-	        backgroundColor: '#fff' // 没有背景色
-        }).then(canvas => {
-          const img = document.createElement('a')
-          img.href = canvas.toDataURL('image/jpg')
-          img.download = 'img'
-          img.click()
-        })
+ 
     },
     // 显示提示
     showInfo () {

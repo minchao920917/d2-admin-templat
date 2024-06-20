@@ -30,10 +30,11 @@
       height: 60px;
       z-index: 999;
       .d2-theme-header-menu {
-        // overflow: hidden;
+        width: 200px;
         &.is-scrollable {
           position: relative;
           padding: 0 20px;
+          
           .d2-theme-header-menu__prev, .d2-theme-header-menu__next {
             display: -webkit-box;
             display: -ms-flexbox;
@@ -41,6 +42,8 @@
           }
         }
         .d2-theme-header-menu__content {
+          width: 200px;
+     
           // overflow: hidden;
           .d2-theme-header-menu__scroll {
             white-space: nowrap;
@@ -52,6 +55,7 @@
             transition: transform .3s,-webkit-transform .3s;
             float: left;
             .menu{
+           
               display: flex;
               list-style: none;
               .menu-li{

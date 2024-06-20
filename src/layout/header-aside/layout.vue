@@ -26,8 +26,8 @@
              flex-box="0">
           <d2-icon name="bars" />
         </div>
-        <d2-menu-new-header flex-box="1" />
-        <!-- <d2-menu-header flex-box="1" /> -->
+        <!-- <d2-menu-new-header flex-box="1" /> -->
+        <d2-menu-header flex-box="1" />
         <!-- 顶栏右侧 -->
         <div class="d2-header-right"
              flex-box="0">
@@ -99,7 +99,7 @@
 <script>
 import d2MenuSide from './components/menu-side'
 import d2MenuHeader from './components/menu-header'
-import d2MenuNewHeader from './components/menu-newHeader'
+// import d2MenuNewHeader from './components/menu-newHeader'
 import d2Tabs from './components/tabs'
 import d2HeaderFullscreen from './components/header-fullscreen'
 import d2HeaderLocales from './components/header-locales'
@@ -119,7 +119,7 @@ export default {
   components: {
     d2MenuSide,
     d2MenuHeader,
-    d2MenuNewHeader,
+    // d2MenuNewHeader,
     d2Tabs,
     d2HeaderFullscreen,
     d2HeaderLocales,

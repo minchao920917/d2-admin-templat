@@ -1,6 +1,15 @@
+/*
+ * @Author: minchao
+ * @Date: 2023-11-20 08:35:07
+ * @LastEditors: minchao
+ * @LastEditTime: 2024-05-10 08:21:08
+ * @Description: 请填写简介
+ */
 import playground from './modules/playground'
 import plugins from './modules/plugins'
 import components from './modules/components'
+import test from './modules/test'
+import test2 from './modules/test2'
 
 import layoutHeaderAside from '@/layout/header-aside'
 
@@ -54,7 +63,9 @@ const frameIn = [
   },
   playground,
   plugins,
-  components
+  components,
+  test,
+  test2
 ]
 
 /**

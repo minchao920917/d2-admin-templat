@@ -1,3 +1,10 @@
+/*
+ * @Author: minchao
+ * @Date: 2023-11-20 08:35:07
+ * @LastEditors: minchao
+ * @LastEditTime: 2024-05-24 08:36:08
+ * @Description: 请填写简介
+ */
 // Vue
 import Vue from 'vue'
 import i18n from './i18n'
@@ -13,11 +20,13 @@ import { menuHeader, menuAside } from '@/menu'
 import { frameInRoutes } from '@/router/routes'
 import Vue2OrgTree from 'vue2-org-tree'
 import 'vue2-org-tree/dist/style.css'
-
+// 将自动注册所有组件为全局组件
+import dataV from '@jiaminghi/data-view'
 
 // 核心插件
 Vue.use(d2Admin)
 Vue.use(Vue2OrgTree)
+Vue.use(dataV)
 new Vue({
   router,
   store,

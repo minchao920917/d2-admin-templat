@@ -22,7 +22,7 @@ export default {
         },
         series: [
           {
-            name: '数据',
+            name: '访问来源',
             type: 'pie',
             radius: ['50%', '70%'],
             itemStyle: {

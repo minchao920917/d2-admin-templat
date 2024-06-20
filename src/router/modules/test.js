@@ -1,8 +1,15 @@
 /*
  * @Author: minchao
- * @Date: 2023-11-20 08:35:07
+ * @Date: 2024-05-10 08:20:05
  * @LastEditors: minchao
- * @LastEditTime: 2024-05-24 08:38:21
+ * @LastEditTime: 2024-05-23 18:28:25
+ * @Description: 请填写简介
+ */
+/*
+ * @Author: minchao
+ * @Date: 2024-05-10 08:20:05
+ * @LastEditors: minchao
+ * @LastEditTime: 2024-05-10 08:20:18
  * @Description: 请填写简介
  */
 import layoutHeaderAside from '@/layout/header-aside'
@@ -13,8 +20,8 @@ const _import = require('@/libs/util.import.' + process.env.NODE_ENV)
 const meta = { auth: true }
 
 export default {
-  path: '/demo/components',
-  name: 'demo-components',
+  path: '/demo/test',
+  name: 'demo-test',
   meta,
   redirect: { name: 'demo-components-index' },
   component: layoutHeaderAside,
@@ -41,9 +48,6 @@ export default {
     { path: 'index', name: 'demo-components-index', component: _import('demo/components/index'), meta: { ...meta, title: '组件首页' } },
     { path: 'json-tree', name: 'demo-components-json-tree', component: _import('demo/components/json-tree'), meta: { ...meta, title: 'JSON 展示' } },
     { path: 'layout/grid', name: 'demo-components-layout-grid', component: _import('demo/components/layout/grid.vue'), meta: { ...meta, title: '拖拽网格布局' } },
-    { path: 'layout/incubator', name: 'demo-components-layout-incubator', component: _import('demo/components/layout/incubator.vue'), meta: { ...meta, title: '温箱状态' } },
-    { path: 'layout/incubatorDetail', name: 'demo-components-layout-incubatorDetail', component: _import('demo/components/layout/incubatorDetail.vue'), meta: { ...meta, title: '温箱详情' } },
-    { path: 'layout/temperature', name: 'demo-components-layout-temperature', component: _import('demo/components/layout/temperature.vue'), meta: { ...meta, title: '温湿度显示' } },
     { path: 'layout/splitpane', name: 'demo-components-layout-splitpane', component: _import('demo/components/layout/splitpane.vue'), meta: { ...meta, title: '区域布局' } },
     { path: 'markdown/source', name: 'demo-components-markdown-source', component: _import('demo/components/markdown/source.vue'), meta: { ...meta, title: 'markdown指定资源渲染' } },
     { path: 'markdown/url', name: 'demo-components-markdown-url', component: _import('demo/components/markdown/url.vue'), meta: { ...meta, title: 'markdown指定url渲染' } }
